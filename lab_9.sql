@@ -257,83 +257,83 @@ INSERT spisok_tovarov VALUES
 (3000,40,4,4,6);
 
 
---Ñîçäàòü õğàíèìûå ïğîöåäóğû äëÿ âûáîğêè äàííûõ (Ïîñòàâêè):
+--Ğ¡Ğ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ Ñ…Ñ€Ğ°Ğ½Ğ¸Ğ¼Ñ‹Ğµ Ğ¿Ñ€Ğ¾Ñ†ĞµĞ´ÑƒÑ€Ñ‹ Ğ´Ğ»Ñ Ğ²Ñ‹Ğ±Ğ¾Ñ€ĞºĞ¸ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… (ĞŸĞ¾ÑÑ‚Ğ°Ğ²ĞºĞ¸):
 
--- Ñïèñîê ïîñòàâêè çà ïåğèîä  ïî òîâàğàì
+-- Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²ĞºĞ¸ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´  Ğ¿Ğ¾ Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ°Ğ¼
 SELECT comments AS "Tovar"
 FROM tovar 
 WHERE id_tovar = (SELECT id_postavki FROM postavki WHERE data = '2020-04-01');
--- Ñïèñîê òîâàğîâ ïîñòàâëåííûõ ïî ïîñòàâùèêó
+-- Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ¾Ğ² Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ½Ñ‹Ñ… Ğ¿Ğ¾ Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²Ñ‰Ğ¸ĞºÑƒ
 SELECT comments AS "Tovar"
 FROM tovar
 WHERE id_tovar = (SELECT id_spisok_postavki FROM spisok_postavki WHERE id_postavki = (SELECT id_postavki FROM postavki WHERE id_postavshik = (SELECT id_postavshik FROM postavshik WHERE imya_postavshika='Nurislam')));
--- Ñïèñîê òîâàğîâ ïîñòàâëåííûõ ïî òèïó òîâàğà
+-- Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ¾Ğ² Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ½Ñ‹Ñ… Ğ¿Ğ¾ Ñ‚Ğ¸Ğ¿Ñƒ Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ°
 SELECT *
 FROM spisok_tovarov
 WHERE id_spisok_postavki in (SELECT id_spisok_postavki FROM spisok_postavki WHERE id_postavki in (SELECT id_postavki FROM postavki WHERE id_postavshik in (SELECT id_postavshik FROM postavshik WHERE nazvaniye = 'Retail goods')));
--- Ïîñòàâêè ïî òîâàğàì 
+-- ĞŸĞ¾ÑÑ‚Ğ°Ğ²ĞºĞ¸ Ğ¿Ğ¾ Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ°Ğ¼ 
 SELECT numer_doc,data
 FROM postavki
 WHERE id_postavki = (SELECT id_spisok_postavki FROM spisok_postavki WHERE id_postavki = (SELECT id_spisok_tovarov FROM spisok_tovarov WHERE id_spisok_postavki = (SELECT id_tovar FROM tovar WHERE id_tovar='3')));
--- Ïîñòàâêè ïî òîâàğàì ïî êëèåíòàì çà ïåğèîä
--- Èçìåíåíèå öåí íà òîâàğû, ïîñòàâëåííûå çà ïåğèîä
+-- ĞŸĞ¾ÑÑ‚Ğ°Ğ²ĞºĞ¸ Ğ¿Ğ¾ Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ°Ğ¼ Ğ¿Ğ¾ ĞºĞ»Ğ¸ĞµĞ½Ñ‚Ğ°Ğ¼ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
+--Ğ˜Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ğµ Ñ†ĞµĞ½ Ğ½Ğ° Ñ‚Ğ¾Ğ²Ğ°Ñ€Ñ‹, Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ½Ñ‹Ğµ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 UPDATE dbo.spisok_postavki
 SET cena = 2999
 WHERE srok_godnosti BETWEEN '2018-01-01' AND '2023-01-12';
--- Îïëàòà ïî ïîñòàâêàì (æóğíàë) çà ïåğèîä
+-- ĞĞ¿Ğ»Ğ°Ñ‚Ğ° Ğ¿Ğ¾ Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²ĞºĞ°Ğ¼ (Ğ¶ÑƒÑ€Ğ½Ğ°Ğ») Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT *
 FROM oplata
 WHERE id_zakaz in (SELECT id_zakaz FROM zakaz WHERE id_zakaz in (SELECT id_zakaz FROM spisok_tovarov WHERE id_spisok_postavki IN (SELECT id_spisok_postavki FROM spisok_postavki WHERE id_postavki in (SELECT id_postavki FROM postavki WHERE data BETWEEN ('2022-01-01') and ('2022-03-01')))));
 
 
---Ñîçäàòü õğàíèìûå ïğîöåäóğû äëÿ âûáîğêè äàííûõ (Ïğîäàæè):
+--Ğ¡Ğ¾Ğ·Ğ´Ğ°Ñ‚ÑŒ Ñ…Ñ€Ğ°Ğ½Ğ¸Ğ¼Ñ‹Ğµ Ğ¿Ñ€Ğ¾Ñ†ĞµĞ´ÑƒÑ€Ñ‹ Ğ´Ğ»Ñ Ğ²Ñ‹Ğ±Ğ¾Ñ€ĞºĞ¸ Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… (ĞŸÑ€Ğ¾Ğ´Ğ°Ğ¶Ğ¸):
 
--- Ñïèñîê ïğîäàæ çà ïåğèîä  ïî òîâàğàì
+-- Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ğ¿Ñ€Ğ¾Ğ´Ğ°Ğ¶ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´  Ğ¿Ğ¾ Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ°Ğ¼
 SELECT klient.familiya_klienta, zakaz.data
 FROM dbo.klient, dbo.zakaz
 WHERE klient.id_klient = zakaz.id_klient AND (data NOT BETWEEN '2022-01-01' AND '2021-01-12');
--- Çàêàçû êëèåíòà çà ïåğèîä
+-- Ğ—Ğ°ĞºĞ°Ğ·Ñ‹ ĞºĞ»Ğ¸ĞµĞ½Ñ‚Ğ° Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT  tovar.comments, price_list.cena 
 FROM dbo.tovar, dbo.price_list
 WHERE tovar.id_tovar = price_list.id_tovar;
--- Ñïèñîê òîâàğîâ ïğîäàííûõ çà ïåğèîä
+-- Ğ¡Ğ¿Ğ¸ÑĞ¾Ğº Ñ‚Ğ¾Ğ²Ğ°Ñ€Ğ¾Ğ² Ğ¿Ñ€Ğ¾Ğ´Ğ°Ğ½Ğ½Ñ‹Ñ… Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT  vid_oplaty.vid_oplaty, oplata.data 
 FROM dbo.vid_oplaty, dbo.oplata
 WHERE oplata.data BETWEEN '2017-01-01' AND '2023-12-01' AND (vid_oplaty.id_vid_oplaty = oplata.id_vid_oplaty
--- Èçìåíåíèå öåí íà òîâàğû, ïîñòàâëåííûå çà ïåğèîä
+-- Ğ˜Ğ·Ğ¼ĞµĞ½ĞµĞ½Ğ¸Ğµ Ñ†ĞµĞ½ Ğ½Ğ° Ñ‚Ğ¾Ğ²Ğ°Ñ€Ñ‹, Ğ¿Ğ¾ÑÑ‚Ğ°Ğ²Ğ»ĞµĞ½Ğ½Ñ‹Ğµ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 UPDATE dbo.price_list
 SET cena = 4000
 WHERE data BETWEEN '2018-01-01' AND '2023-01-12';
--- Àêòóàëüíûé ïğàéñ-ëèñò
+--  ĞĞºÑ‚ÑƒĞ°Ğ»ÑŒĞ½Ñ‹Ğ¹ Ğ¿Ñ€Ğ°Ğ¹Ñ-Ğ»Ğ¸ÑÑ‚
 SELECT id_tovar,cena
 FROM price_list;
--- Îïëàòà ïî ïğîäàæàì (æóğíàë) çà ïåğèîä
+--  ĞĞ¿Ğ»Ğ°Ñ‚Ğ° Ğ¿Ğ¾ Ğ¿Ñ€Ğ¾Ğ´Ğ°Ğ¶Ğ°Ğ¼ (Ğ¶ÑƒÑ€Ğ½Ğ°Ğ») Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT id_oplata, summa, id_zakaz
 FROM oplata
 WHERE data >= '2018-01-01'
   and data <= '2022-03-01';
--- Îïëàòà ïî âèäó îïëàòû çà ïåğèîä
+--  ĞĞ¿Ğ»Ğ°Ñ‚Ğ° Ğ¿Ğ¾ Ğ²Ğ¸Ğ´Ñƒ Ğ¾Ğ¿Ğ»Ğ°Ñ‚Ñ‹ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT summa
 FROM oplata
 WHERE id_vid_oplaty = (SELECT id_vid_oplaty from vid_oplaty WHERE vid_oplaty = 'cash')
   and data >= '2022-01-01'
   and data <= '2022-03-01';
--- Ïğîäàæè ïî ñîòğóäíèêàì ñòàòèñòèêà
+-- ĞŸÑ€Ğ¾Ğ´Ğ°Ğ¶Ğ¸ Ğ¿Ğ¾ ÑĞ¾Ñ‚Ñ€ÑƒĞ´Ğ½Ğ¸ĞºĞ°Ğ¼ ÑÑ‚Ğ°Ñ‚Ğ¸ÑÑ‚Ğ¸ĞºĞ°
 SELECT *
 FROM zakaz
 WHERE id_sotrudnik = 1;
--- Ïğîäàæè ïî ğàéîíó çà ïåğèîä
+-- ĞŸÑ€Ğ¾Ğ´Ğ°Ğ¶Ğ¸ Ğ¿Ğ¾ Ñ€Ğ°Ğ¹Ğ¾Ğ½Ñƒ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT *
 FROM zakaz
 WHERE id_klient in (SELECT id_klient FROM klient WHERE id_rayon in (SELECT id_rayon FROM rayon WHERE rayon = 'Central'));
--- Êîíòàêòû êëèåíòîâ
+-- ĞšĞ¾Ğ½Ñ‚Ğ°ĞºÑ‚Ñ‹ ĞºĞ»Ğ¸ĞµĞ½Ñ‚Ğ¾Ğ²
 SELECT klient.familiya_klienta,klient.imya_klienta,klient.otchestvo_klienta, kontakty.kontakty
 FROM dbo.klient, dbo.kontakty
 WHERE klient.id_klient = kontakty.id_klient
--- Çàêàçû ïî òèïó ïğîäàæ çà ïåğèîä
+-- Ğ—Ğ°ĞºĞ°Ğ·Ñ‹ Ğ¿Ğ¾ Ñ‚Ğ¸Ğ¿Ñƒ Ğ¿Ñ€Ğ¾Ğ´Ğ°Ğ¶ Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT id_zakaz, id_tip_prodaj
 FROM zakaz;
--- Çàêàçû ïî òèïó çàêàçà çà ïåğèîä
+-- Ğ—Ğ°ĞºĞ°Ğ·Ñ‹ Ğ¿Ğ¾ Ñ‚Ğ¸Ğ¿Ñƒ Ğ·Ğ°ĞºĞ°Ğ·Ğ° Ğ·Ğ° Ğ¿ĞµÑ€Ğ¸Ğ¾Ğ´
 SELECT id_zakaz, id_tip_zakaza
 FROM zakaz;
 
