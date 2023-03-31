@@ -56,7 +56,7 @@ UPDATE Products SET Manufacturer='Moto'
 WHERE Manufacturer='Motorola';
 SELECT * FROM History;
 ---Tasks
---является ли цена товара положительным числом.
+--СЏРІР»СЏРµС‚СЃСЏ Р»Рё С†РµРЅР° С‚РѕРІР°СЂР° РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј С‡РёСЃР»РѕРј.
 CREATE TRIGGER trg_BeforeInsert_Products
 ON Products
 BEFORE INSERT
@@ -68,7 +68,7 @@ RAISERROR('Price cannot be negative number', 16, 1)
 ROLLBACK TRANSACTION
 END
 END
---создать запись в таблице "History", когда товар обновляется.
+--СЃРѕР·РґР°С‚СЊ Р·Р°РїРёСЃСЊ РІ С‚Р°Р±Р»РёС†Рµ "History", РєРѕРіРґР° С‚РѕРІР°СЂ РѕР±РЅРѕРІР»СЏРµС‚СЃСЏ.
 CREATE TRIGGER trg_AfterUpdate_Products
 ON Products
 AFTER UPDATE
@@ -86,7 +86,7 @@ CREATE TABLE ArchivedProducts (
   ProductCount INT,
   Price DECIMAL(10, 2)
 );
---перенести удаленные товары в таблицу "ArchivedProducts".
+--РїРµСЂРµРЅРµСЃС‚Рё СѓРґР°Р»РµРЅРЅС‹Рµ С‚РѕРІР°СЂС‹ РІ С‚Р°Р±Р»РёС†Сѓ "ArchivedProducts".
 CREATE TRIGGER trg_InsteadOfDelete_Products
 ON Products
 INSTEAD OF DELETE
